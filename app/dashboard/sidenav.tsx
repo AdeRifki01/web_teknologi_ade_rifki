@@ -8,7 +8,7 @@ export default function SideNav() {
     return (
         <div className="flex h-full flex-col px-3 py-4 md:px-3">
             <Link
-                className="mb-3 flex h-24 items-center justify-center rounded-xl bg-blue-600 p-3 shadow-sm transition-all hover:bg-blue-700 md:h-36"
+                className="mb-2 flex h-16 items-center justify-center rounded-xl bg-blue-600 p-2 shadow-sm transition-all hover:bg-blue-700 md:mb-3 md:h-36 md:p-3"
                 href="/"
             >
                 <div className="relative flex w-full items-center justify-center">
@@ -16,7 +16,7 @@ export default function SideNav() {
                         src="/logo/uia-logo.png"
                         width={280}
                         height={85}
-                        className="h-12 w-auto object-contain md:h-20"
+                        className="h-9 w-auto object-contain md:h-20"
                         alt="Logo Universitas Islam As-Syafi'iyah"
                         priority
                     />
