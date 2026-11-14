@@ -3,6 +3,7 @@ import NavLinks from "@/app/dashboard/nav-links";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { signOut } from "@/auth";
+import { cookies } from "next/headers";
 
 export default function SideNav() {
     return (
@@ -18,7 +19,13 @@ export default function SideNav() {
                 <form
                     action={async () => {
                         "use server";
-                        await signOut();
+                        const cookieStore = await cookies();
+                        cookieStore.getAll().forEach((cookie) => {
+                            if (cookie.name.includes("authjs") || cookie.name.includes("next-auth")) {
+                                cookieStore.delete(cookie.name);
+                            }
+                        });
+                        await signOut({ redirectTo: "/login" });
                     }}
                 >
                     <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium text-gray-900 hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
