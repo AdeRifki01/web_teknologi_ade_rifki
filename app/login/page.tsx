@@ -2,10 +2,12 @@
 
 import { lusitana } from '@/app/ui/fonts';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
     AtSymbolIcon,
     KeyIcon,
     ExclamationCircleIcon,
+    ArrowLeftIcon,
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from '@/app/ui/button';
@@ -19,76 +21,100 @@ export default function Page() {
     );
 
     return (
-        <main className="flex min-h-screen flex-col p-6 bg-white">
-            <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-                <Image
-                    src="/logo/uia-logo.png"
-                    width={500}
-                    height={360}
-                    className="block"
-                    alt="Banner UIA"
-                />
-            </div>
-            <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20 m-auto mt-4">
-                <form action={formAction} className="space-y-3">
-                    <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-                        <h1 className={`${lusitana.className} mb-3 text-2xl text-gray-900`}>
-                            Silakan Masuk dengan akun Anda.
+        <main className="flex min-h-screen flex-col bg-gray-50 p-4 md:p-6">
+            {/* Navbar Header */}
+            <header className="flex h-20 w-full items-center justify-between rounded-xl bg-blue-600 px-4 py-3 shadow-sm md:h-24 md:px-8">
+                <Link href="/" className="flex items-center gap-3">
+                    <Image
+                        src="/logo/uia-logo.png"
+                        width={280}
+                        height={85}
+                        className="h-10 w-auto object-contain md:h-14"
+                        alt="Logo Universitas Islam As-Syafi'iyah"
+                        priority
+                    />
+                </Link>
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 rounded-lg bg-blue-700/60 px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-blue-700 md:text-sm"
+                >
+                    <ArrowLeftIcon className="h-4 w-4" />
+                    <span>Kembali ke Beranda</span>
+                </Link>
+            </header>
+
+            {/* Form Container */}
+            <div className="flex flex-1 items-center justify-center py-8">
+                <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-md md:p-8">
+                    <div className="mb-6 text-center">
+                        <h1 className={`${lusitana.className} text-2xl font-bold text-gray-900 md:text-3xl`}>
+                            Silakan Masuk
                         </h1>
-                        <div className="w-full">
-                            <div>
-                                <label
-                                    className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-                                    htmlFor="email"
-                                >
-                                    Email
-                                </label>
-                                <div className="relative">
-                                    <input
-                                        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 text-gray-900 placeholder:text-gray-500 bg-white"
-                                        id="email"
-                                        type="email"
-                                        name="email"
-                                        placeholder="Ketikkan alamat email"
-                                        required
-                                    />
-                                    <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-                                </div>
-                            </div>
-                            <div className="mt-4">
-                                <label
-                                    className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-                                    htmlFor="password"
-                                >
-                                    Kata Sandi
-                                </label>
-                                <div className="relative">
-                                    <input
-                                        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 text-gray-900 placeholder:text-gray-500 bg-white"
-                                        id="password"
-                                        type="password"
-                                        name="password"
-                                        placeholder="Ketikkan Kata Sandi"
-                                        required
-                                        minLength={6}
-                                    />
-                                    <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-                                </div>
+                        <p className="mt-1 text-sm text-gray-600">
+                            Gunakan akun Anda untuk mengakses dashboard
+                        </p>
+                    </div>
+
+                    <form action={formAction} className="space-y-4">
+                        <div>
+                            <label
+                                className="mb-2 block text-xs font-semibold text-gray-700 md:text-sm"
+                                htmlFor="email"
+                            >
+                                Alamat Email
+                            </label>
+                            <div className="relative">
+                                <input
+                                    className="peer block w-full rounded-lg border border-gray-300 py-2.5 pl-10 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    placeholder="nama@email.com"
+                                    required
+                                />
+                                <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 peer-focus:text-blue-500" />
                             </div>
                         </div>
-                        <Button className="mt-4 w-full" aria-disabled={isPending}>
-                            Masuk <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+
+                        <div>
+                            <label
+                                className="mb-2 block text-xs font-semibold text-gray-700 md:text-sm"
+                                htmlFor="password"
+                            >
+                                Kata Sandi
+                            </label>
+                            <div className="relative">
+                                <input
+                                    className="peer block w-full rounded-lg border border-gray-300 py-2.5 pl-10 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                                    id="password"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Ketikkan kata sandi"
+                                    required
+                                    minLength={6}
+                                />
+                                <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400 peer-focus:text-blue-500" />
+                            </div>
+                        </div>
+
+                        <Button
+                            className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                            aria-disabled={isPending}
+                        >
+                            <span>{isPending ? 'Memproses...' : 'Masuk'}</span>
+                            <ArrowRightIcon className="h-4 w-4" />
                         </Button>
-                        <div className="flex h-8 items-end space-x-1" aria-live="polite" aria-atomic="true">
+
+                        <div className="min-h-6 pt-1" aria-live="polite" aria-atomic="true">
                             {errorMessage && (
-                                <>
-                                    <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-                                    <p className="text-sm text-red-500">{errorMessage}</p>
-                                </>
+                                <div className="flex items-center gap-2 rounded-lg bg-red-50 p-2.5 text-sm text-red-600 border border-red-200">
+                                    <ExclamationCircleIcon className="h-5 w-5 shrink-0" />
+                                    <span>{errorMessage}</span>
+                                </div>
                             )}
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </main>
     );
