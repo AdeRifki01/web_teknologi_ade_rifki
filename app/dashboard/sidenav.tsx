@@ -3,7 +3,6 @@ import NavLinks from "@/app/dashboard/nav-links";
 import { PowerIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { signOut } from "@/auth";
-import { cookies } from "next/headers";
 
 export default function SideNav() {
     return (
@@ -29,12 +28,6 @@ export default function SideNav() {
                 <form
                     action={async () => {
                         "use server";
-                        const cookieStore = await cookies();
-                        cookieStore.getAll().forEach((cookie) => {
-                            if (cookie.name.includes("authjs") || cookie.name.includes("next-auth")) {
-                                cookieStore.delete(cookie.name);
-                            }
-                        });
                         await signOut({ redirectTo: "/login" });
                     }}
                 >
