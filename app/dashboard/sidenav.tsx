@@ -7,15 +7,25 @@ import { cookies } from "next/headers";
 
 export default function SideNav() {
     return (
-        <div className="flex h-full flex-col px-3 py-4 md:px-2">
-            <Link className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40" href="/">
-                <div className="w-32 text-white md:w-40">
-                    <Image src="/logo/uia-logo.png" width={300} height={160} className="block" alt="Banner UIA" />
+        <div className="flex h-full flex-col px-3 py-4 md:px-3">
+            <Link
+                className="mb-3 flex h-24 items-center justify-center rounded-xl bg-blue-600 p-3 shadow-sm transition-all hover:bg-blue-700 md:h-36"
+                href="/"
+            >
+                <div className="relative flex w-full items-center justify-center">
+                    <Image
+                        src="/logo/uia-logo.png"
+                        width={280}
+                        height={85}
+                        className="h-12 w-auto object-contain md:h-20"
+                        alt="Logo Universitas Islam As-Syafi'iyah"
+                        priority
+                    />
                 </div>
             </Link>
             <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
                 <NavLinks />
-                <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
+                <div className="hidden h-auto w-full grow rounded-xl bg-gray-50/80 md:block"></div>
                 <form
                     action={async () => {
                         "use server";
@@ -28,8 +38,8 @@ export default function SideNav() {
                         await signOut({ redirectTo: "/login" });
                     }}
                 >
-                    <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium text-gray-900 hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-                        <PowerIcon className="w-6" />
+                    <button className="flex h-[48px] w-full grow items-center justify-center gap-3 rounded-lg bg-gray-50 p-3 text-sm font-medium text-gray-700 transition-colors hover:bg-red-50 hover:text-red-600 md:flex-none md:justify-start md:p-2.5 md:px-3">
+                        <PowerIcon className="w-5" />
                         <div className="hidden md:block">Keluar</div>
                     </button>
                 </form>
